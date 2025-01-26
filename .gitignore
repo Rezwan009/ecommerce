@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+
+# Laravel
+/backend/vendor/
+/backend/storage/
+/backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
