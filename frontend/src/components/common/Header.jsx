@@ -9,7 +9,7 @@ const Header = () => {
       </div>
       <div className="container">
         <Navbar expand="lg" className="">
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img src={Logo} alt="" width={100} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -23,8 +23,8 @@ const Header = () => {
               <a href="" className="ms-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
+                  width="24"
+                  height="24"
                   fill="currentColor"
                   className="bi bi-person"
                   viewBox="0 0 16 16"
@@ -36,7 +36,7 @@ const Header = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
-                  height="28"
+                  height="24"
                   fill="currentColor"
                   className="bi bi-bag"
                   viewBox="0 0 16 16"
