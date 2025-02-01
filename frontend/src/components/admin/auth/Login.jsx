@@ -3,31 +3,40 @@ import Layout from "./../../common/Layout";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useApi } from "../../../context/ApiContext";
+import { useApi } from "../../../context/ApiContext.jsx";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const Api = useApi();
+  const { login, ApiService } = useApi();
   const navigate = useNavigate();
+  // Handling Form Submit for login
   const onSubmit = async (data) => {
-    
-    await Api.post("/admin/login", data).then((res) => {
-      if (res.status === 200) {
-        localStorage.setItem("token", res.token);
-        localStorage.setItem("user", JSON.stringify(res.user));
-        navigate("/admin/dashboard");
-      } else {
-        toast.error(res.message);
-      }
-    }).catch(function (err) { 
-      toast.error(err);
-    });
+    await ApiService.post("/admin/login", data)
+      .then((res) => {
+        if (res.status === 200) {
+          const adminInfo = {
+            id: res?.user.id,
+            name: res?.user?.name,
+            email: res?.user?.email,
+            role: res.user?.role,
+            token: res?.token,
+          };
+          localStorage.setItem("adminInfo", JSON.stringify(adminInfo));
+          login(adminInfo);
+          navigate("/admin/dashboard");
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
+        }
+      })
+      .catch(function (err) {
+        toast.error(err);
+      });
   };
   return (
     <Layout>

@@ -189,25 +189,47 @@ footer {
     }
   }
 }
-.product-detail{
-  .mySwiper{
-    .swiper-slide{
+.product-detail {
+  .mySwiper {
+    .swiper-slide {
       height: auto !important;
     }
   }
   .price {
-      font-size: 1.5em;
-      font-weight: bold;
-      padding-top: 15px;
-      del {
-        color: rgba($color: $primary-black, $alpha: 0.5);
-      }
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: 15px;
+    del {
+      color: rgba($color: $primary-black, $alpha: 0.5);
     }
+  }
 }
-.login-form{
+.login-form {
   width: 100%;
   max-width: 450px;
   margin: 0 auto;
+}
+.sidebar {
+  ul {
+    li {
+      border-bottom: 1px solid rgba(6, 17, 35, 0.2);
+      margin-bottom: 2px;
+      &:last-child {
+        border-bottom: none; // ❌ Removes border for the last li
+      }
+
+      a {
+        font-size: 1em;
+        display: block;
+        padding: 10px;
+        color: $primary-black;
+        &:hover {
+          color: $primary-color;
+          transition: all 0.2s ease-out;
+        }
+      }
+    }
+  }
 }
 @media (min-width: 200px) and (max-width: 768px) {
   .section-1 {

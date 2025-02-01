@@ -15,7 +15,7 @@ class AuthController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6`````````'
+            'password' => 'required|min:6'
         ]);
 
         // If validation fails, return error response with validation errors
@@ -29,7 +29,7 @@ class AuthController extends Controller
             if ($user->role == 'admin') {
                 // If user is an admin, generate and return admin token
                 $token = $user->createToken('token')->plainTextToken;
-                return response()->json(['user' => $user, 'token' => $token,'status' => 200]);
+                return response()->json(['user' => $user, 'token' => $token,'message'=>'Login Successful.','status' => 200]);
             } else {
                 return response()->json(['status' => 403, 'message' => 'You do not have
                 permission to access admin dashboard.']);
