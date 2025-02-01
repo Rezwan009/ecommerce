@@ -204,6 +204,11 @@ footer {
       }
     }
 }
+.login-form{
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
 @media (min-width: 200px) and (max-width: 768px) {
   .section-1 {
     .swiper {

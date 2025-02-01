@@ -15,12 +15,12 @@ class AuthController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:8'
+            'password' => 'required|min:6`````````'
         ]);
 
         // If validation fails, return error response with validation errors
         if ($validator->fails()) {
-            return response()->json(['status'=>400,'error' => $validator->errors()], 400);
+            return response()->json(['status' => 422,'errors' => $validator->errors()], 422);
         }
 
         // Attempt to authenticate the user with provided credentials
@@ -29,13 +29,25 @@ class AuthController extends Controller
             if ($user->role == 'admin') {
                 // If user is an admin, generate and return admin token
                 $token = $user->createToken('token')->plainTextToken;
-                return response()->json(['user' => $user, 'token' => $token,], 200);
-            }else{
-                return response()->json(['status' => 403, 'error' => 'Forbidden'], 403);
+                return response()->json(['user' => $user, 'token' => $token,'status' => 200]);
+            } else {
+                return response()->json(['status' => 403, 'message' => 'You do not have
+                permission to access admin dashboard.']);
             }
 
         } else {
-            return response()->json(['status' => 401, 'error' => 'Unauthorized'], 401);
+            return response()->json(['status' => 401, 'message' => 'Unauthorized']);
         }
+    }
+    public function user(Request $request)
+    {
+        return $request->user();
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('api')->logout();
+
+        return response()->json(['message' => 'Logout successful']);
     }
 }
