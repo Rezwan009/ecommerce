@@ -33,7 +33,7 @@ class CategoriesController extends Controller
 
         $category = Category::create($request->all());
 
-        return response()->json(['data' => $category,'status' => 201], 201);
+        return response()->json(['data' => $category,'message'=>'Category Added','status' => 201], 201);
     }
     public function show($id)
     {
